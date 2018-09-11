@@ -1,0 +1,113 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:actionMenuTextColor">@color/colorAccent</item>
+    </style>
+
+    <style name="MainListItemRecipeText" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:fontFamily">cursive</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:layout_margin">@dimen/main_list_item_recipe_text_margin</item>
+        <item name="android:textSize">@dimen/main_list_item_recipe_text_size</item>
+    </style>
+
+    <style name="MainListItemInfoText" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">end</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:layout_marginRight">@dimen/main_list_item_info_text_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/main_list_item_info_text_margin_top</item>
+        <item name="android:textSize">@dimen/main_list_item_info_text</item>
+    </style>
+
+    <style name="WidgetTextLabel" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/widget_text_label</item>
+    </style>
+
+    <style name="IngredientsTextBody" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/widget_text_body</item>
+    </style>
+
+    <style name="StepTextDescription" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/step_text_description</item>
+    </style>
+
+    <style name="StepTextDescriptionLabel" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:gravity">center_vertical|center</item>
+        <item name="android:textSize">@dimen/step_text_description</item>
+    </style>
+
+    <style name="ImageButtonNextPrevious" parent="Base.Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">@dimen/image_button_next_previous_size</item>
+        <item name="android:layout_height">@dimen/image_button_next_previous_size</item>
+        <item name="android:background">@drawable/circle</item>
+    </style>
+
+    <style name="StepItemNumberText" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">@dimen/text_step_background_size</item>
+        <item name="android:layout_height">@dimen/text_step_background_size</item>
+        <item name="android:background">@drawable/circle</item>
+        <item name="android:layout_gravity">center|center_vertical</item>
+        <item name="android:gravity">center|center_vertical</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/step_text_description</item>
+    </style>
+
+    <style name="StepItemInfoText" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/step_text_description</item>
+        <item name="android:layout_margin">@dimen/step_item_info_text_margin</item>
+    </style>
+
+    <style name="StepItemDividerView" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorDarkGrey</item>
+        <item name="android:layout_marginRight">@dimen/step_item_view_right_margin</item>
+        <item name="android:layout_marginLeft">@dimen/step_item_view_left_margin</item>
+    </style>
+
+</resources>

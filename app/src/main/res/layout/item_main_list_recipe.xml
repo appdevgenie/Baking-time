@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    app:cardElevation="@dimen/card_view_elevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivMainListRecipeThumb"
+            android:layout_width="@dimen/main_imageview_thumb_size"
+            android:layout_height="@dimen/main_imageview_thumb_size"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/image_view_recipe"
+            android:contentDescription="@string/imageview_main_thumb" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMainListRecipeName"
+                style="@style/MainListItemRecipeText"
+                tools:text="Recipe name" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tvMainListRecipeSteps"
+                style="@style/MainListItemInfoText"
+                tools:text="Steps" />
+
+            <TextView
+                android:id="@+id/tvMainListRecipeServings"
+                style="@style/MainListItemInfoText"
+                tools:text="Servings" />
+
+            <TextView
+                android:id="@+id/tvMainListRecipeIngredients"
+                style="@style/MainListItemInfoText"
+                tools:text="Ingredients" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

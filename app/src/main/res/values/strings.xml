@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Baking time</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="main_list_imageview">main_list_imageview</string>
+    <string name="error_loading_recipes">Error loading recipes, check connection!</string>
+    <string name="servings">servings</string>
+    <string name="introduction">Introduction</string>
+    <string name="step">Step</string>
+    <string name="image_button_previous">image_button_previous</string>
+    <string name="image_button_next">image_button_next</string>
+    <string name="exo_play_image_button">exo_play_image_button</string>
+    <string name="exo_pause_image_button">exo_pause_image_button</string>
+    <string name="favourites">Favourites</string>
+    <string name="added_to_favourites">added to favourites</string>
+    <string name="removed_from_favourites">removed from favourites</string>
+    <string name="network">Network</string>
+    <string name="recipe">Recipe</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="click_to_add_to_widget">Click to add to widget</string>
+    <string name="dot">•</string>
+    <string name="refresh">Refresh</string>
+    <string name="share">Share</string>
+    <string name="ingredients">ingredients</string>
+    <string name="steps">steps</string>
+    <string name="delete_dialog_msg">Delete all favourites?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="added_to_widget">added to widget</string>
+    <string name="intent_share_type">text/plain</string>
+    <string name="intro_abbr">IN</string>
+    <string name="measure_decimal_format">###.#</string>
+    <string name="imageview_main_thumb">imageview_main_thumb</string>
+    <string name="loading_recipes">Loading recipes &#8230;</string>
+    <string name="network_recipes">Network recipes</string>
+    <string name="favourite_recipes">Favourite recipes</string>
+    <string name="steps_and_ingredients">Steps and ingredients</string>
+    <string name="step_and_video">Step and video</string>
+
+</resources>

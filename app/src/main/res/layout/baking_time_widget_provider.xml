@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlWidgetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/widget_margin"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/tvWidgetRecipeName"
+        style="@style/WidgetTextLabel"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:text="Recipe" />
+
+    <TextView
+        android:id="@+id/tvWidgetIngredients"
+        style="@style/IngredientsTextBody"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tvWidgetRecipeName"
+        tools:text="Ingredients" />
+</RelativeLayout>
