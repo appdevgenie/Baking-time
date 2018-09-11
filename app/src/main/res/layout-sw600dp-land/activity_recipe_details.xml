@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainListActivity">
@@ -31,7 +32,7 @@
                 android:fontFamily="casual"
                 android:gravity="center"
                 android:textColor="@color/colorWhite"
-                tools:text="Recipes" />
+                android:text="@string/steps_and_ingredients" />
 
             <TextView
                 android:id="@+id/tvTabletDetailsInfo"

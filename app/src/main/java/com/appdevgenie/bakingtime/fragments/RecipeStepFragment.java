@@ -101,6 +101,8 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
             cvStepDescription.setVisibility(View.VISIBLE);
         }
         if(!dualPane && isLandscape()){
+            LinearLayout linearLayout = getActivity().findViewById(R.id.llDetailsInfo);
+            linearLayout.setVisibility(View.GONE);
             hideSystemUI();
         }
         tvDescription = view.findViewById(R.id.tvStepDetailLongDescription);
@@ -115,6 +117,7 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
 
     private void populateStep() {
 
+        releasePlayer();
         playerView = view.findViewById(R.id.playerView);
         String videoString = stepsArrayList.get(stepID).getVideoURL();
 
@@ -129,16 +132,12 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
 
         if (stepID == 0) {
             ibPreviousStep.setVisibility(View.INVISIBLE);
+            tvStepNumber.setText(R.string.introduction);
         } else if (stepID == stepsArrayList.size() - 1) {
             ibNextStep.setVisibility(View.INVISIBLE);
         } else {
             ibPreviousStep.setVisibility(View.VISIBLE);
             ibNextStep.setVisibility(View.VISIBLE);
-        }
-
-        if (stepID == 0) {
-            tvStepNumber.setText(R.string.introduction);
-        } else {
             tvStepNumber.setText(TextUtils.concat(getString(R.string.step), " ", String.valueOf(stepID)));
         }
     }
@@ -149,19 +148,13 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         switch (view.getId()) {
 
             case R.id.ibStepDetailPrevious:
-
-                releasePlayer();
                 stepID--;
                 populateStep();
-
                 break;
 
             case R.id.ibStepDetailNext:
-
-                releasePlayer();
                 stepID++;
                 populateStep();
-
                 break;
         }
     }
