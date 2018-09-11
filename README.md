@@ -2,13 +2,15 @@
 
 The Baking time application was one of my projects in the Android Developer Nanodegree program.
 
-## Screenshots
+## Screenshots (mobile)
 
 ![device-2018-09-11-085333](https://user-images.githubusercontent.com/39134030/45345160-ca1e1300-b5a5-11e8-8a87-4baf0399ae09.png)
 ![device-2018-09-11-085357](https://user-images.githubusercontent.com/39134030/45345162-cab6a980-b5a5-11e8-805d-79708bfd8009.png)
 ![device-2018-09-11-085424](https://user-images.githubusercontent.com/39134030/45345163-cab6a980-b5a5-11e8-865c-332e8588d478.png)
 ![device-2018-09-11-085522](https://user-images.githubusercontent.com/39134030/45345165-cb4f4000-b5a5-11e8-9481-51519fe1bf2e.png)
 ![device-2018-09-11-090546](https://user-images.githubusercontent.com/39134030/45345166-cb4f4000-b5a5-11e8-8fae-91a5b19dd257.png)
+
+## Screenshots (tablet)
 
 ## Libraries
 
