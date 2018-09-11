@@ -38,5 +38,7 @@
     <string name="favourite_recipes">Favourite recipes</string>
     <string name="steps_and_ingredients">Steps and ingredients</string>
     <string name="step_and_video">Step and video</string>
+    <string name="no_video_no_url">No video, url empty!</string>
+    <string name="loading_video">Loading video&#8230;</string>
 
 </resources>

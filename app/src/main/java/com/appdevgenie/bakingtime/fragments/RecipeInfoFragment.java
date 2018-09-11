@@ -29,7 +29,13 @@ import com.appdevgenie.bakingtime.widget.BakingTimeWidgetProvider;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecipeInfoFragment extends Fragment {
+
+    @BindView(R.id.tvIngredients)
+    TextView tvIngredients;
 
     private View view;
     private Recipe recipe;
@@ -43,6 +49,7 @@ public class RecipeInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_recipe_info, container, false);
+        ButterKnife.bind(this, view);
 
         context = getActivity();
 
@@ -73,8 +80,7 @@ public class RecipeInfoFragment extends Fragment {
 
         ingredients = recipe.getIngredients();
 
-        TextView textView = view.findViewById(R.id.tvIngredients);
-        textView.setText(IngredientListStringBuilder.formatListToString(ingredients, context));
+        tvIngredients.setText(IngredientListStringBuilder.formatListToString(ingredients, context));
 
         List<Step> steps = recipe.getSteps();
         RecyclerView recyclerView = view.findViewById(R.id.rvDetailsRecipeSteps);

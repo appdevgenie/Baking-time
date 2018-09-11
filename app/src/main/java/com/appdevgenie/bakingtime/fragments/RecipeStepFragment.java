@@ -23,6 +23,7 @@ import com.appdevgenie.bakingtime.R;
 import com.appdevgenie.bakingtime.activities.RecipeDetailsActivity;
 import com.appdevgenie.bakingtime.constants.Constants;
 import com.appdevgenie.bakingtime.model.Step;
+import com.appdevgenie.bakingtime.utils.SnackbarUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -44,22 +45,30 @@ import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class RecipeStepFragment extends Fragment implements View.OnClickListener, Player.EventListener {
 
     private static final String TAG = RecipeStepFragment.class.getSimpleName();
 
-    private View view;
-    private int stepID;
-    private TextView tvDescription;
-    private TextView tvStepNumber;
-    private ArrayList<Step> stepsArrayList;
-    private ImageButton ibNextStep;
-    private ImageButton ibPreviousStep;
+    @BindView(R.id.tvStepDetailLongDescription)
+    TextView tvDescription;
+    @BindView(R.id.tvStepDetailNumber)
+    TextView tvStepNumber;
+    @BindView(R.id.ibStepDetailNext)
+    ImageButton ibNextStep;
+    @BindView(R.id.ibStepDetailPrevious)
+    ImageButton ibPreviousStep;
+
     private SimpleExoPlayer exoPlayer;
     private PlayerView playerView;
+    private View view;
+    private int stepID;
     private Context context;
     private boolean dualPane;
+    private ArrayList<Step> stepsArrayList;
     private MediaSessionCompat mediaSession;
     private PlaybackStateCompat.Builder stateBuilder;
 
@@ -69,8 +78,8 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.fragment_step_details, container, false);
+        ButterKnife.bind(this, view);
 
         if (savedInstanceState == null) {
             Bundle bundle = getArguments();
@@ -105,10 +114,6 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
             linearLayout.setVisibility(View.GONE);
             hideSystemUI();
         }
-        tvDescription = view.findViewById(R.id.tvStepDetailLongDescription);
-        tvStepNumber = view.findViewById(R.id.tvStepDetailNumber);
-        ibNextStep = view.findViewById(R.id.ibStepDetailNext);
-        ibPreviousStep = view.findViewById(R.id.ibStepDetailPrevious);
         ibNextStep.setOnClickListener(this);
         ibPreviousStep.setOnClickListener(this);
 
@@ -120,13 +125,17 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         releasePlayer();
         playerView = view.findViewById(R.id.playerView);
         String videoString = stepsArrayList.get(stepID).getVideoURL();
+        String snackText;
 
         if (!TextUtils.isEmpty(videoString)) {
             playerView.setVisibility(View.VISIBLE);
             initializePlayer(Uri.parse(videoString));
+            snackText = getString(R.string.loading_video);
         }else{
             playerView.setVisibility(View.INVISIBLE);
+            snackText = getString(R.string.no_video_no_url);
         }
+        SnackbarUtil.snackBarBuilder(getActivity().findViewById(android.R.id.content), snackText).show();
 
         tvDescription.setText(stepsArrayList.get(stepID).getDescription());
 
