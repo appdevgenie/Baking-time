@@ -4,11 +4,11 @@ The Baking time application was one of my projects in the Android Developer Nano
 
 ## Screenshots
 
-![device-2018-09-11-085333](https://user-images.githubusercontent.com/39134030/45344606-6cd59200-b5a4-11e8-9bdf-831fa538ffd5.png)
-![device-2018-09-11-085357](https://user-images.githubusercontent.com/39134030/45344607-6d6e2880-b5a4-11e8-807b-fb322ebf33da.png)
-![device-2018-09-11-085424](https://user-images.githubusercontent.com/39134030/45344608-6d6e2880-b5a4-11e8-8eca-b1a70cee2ba6.png)
-![device-2018-09-11-085522](https://user-images.githubusercontent.com/39134030/45344609-6e06bf00-b5a4-11e8-9276-0b11a62b8644.png)
-![device-2018-09-11-090546](https://user-images.githubusercontent.com/39134030/45344610-6e06bf00-b5a4-11e8-8b13-5624070a8fb7.png)
+![device-2018-09-11-085333](https://user-images.githubusercontent.com/39134030/45345160-ca1e1300-b5a5-11e8-8a87-4baf0399ae09.png)
+![device-2018-09-11-085357](https://user-images.githubusercontent.com/39134030/45345162-cab6a980-b5a5-11e8-805d-79708bfd8009.png)
+![device-2018-09-11-085424](https://user-images.githubusercontent.com/39134030/45345163-cab6a980-b5a5-11e8-865c-332e8588d478.png)
+![device-2018-09-11-085522](https://user-images.githubusercontent.com/39134030/45345165-cb4f4000-b5a5-11e8-9481-51519fe1bf2e.png)
+![device-2018-09-11-090546](https://user-images.githubusercontent.com/39134030/45345166-cb4f4000-b5a5-11e8-8fae-91a5b19dd257.png)
 
 ## Libraries
 
