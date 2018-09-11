@@ -14,7 +14,7 @@ The Baking time application was one of my projects in the Android Developer Nano
 
 * [Picasso](http://square.github.io/picasso/)
 * [ButterKnife](https://github.com/JakeWharton/butterknife)
-* [JSON parsing](https://developer.android.com/reference/android/util/JsonReader)
+* [Retrofit2](https://square.github.io/retrofit/)
 * [Room database](https://developer.android.com/topic/libraries/architecture/room)
 * [Livedata](https://developer.android.com/topic/libraries/architecture/livedata)
 * [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
