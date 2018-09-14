@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.appdevgenie.bakingtime.R;
 import com.appdevgenie.bakingtime.adapters.RecipeStepsListAdapter;
@@ -49,6 +50,8 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeSt
 
     @BindView(R.id.detailsCoordinatorLayout)
     CoordinatorLayout coordinatorLayout;
+    /*@BindView(R.id.tvDetailsInfo)
+    TextView tvDetailsInfo;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,6 +117,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeSt
         }
 
         getSupportActionBar().setTitle(recipeTitle);
+
     }
 
     private void checkIfFavourite() {
@@ -137,20 +141,25 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeSt
         bundle.putInt(Constants.PARSE_STEP_ID, position);
         bundle.putBoolean(Constants.PARSE_DUAL_PANE, dualPane);
         bundle.putParcelableArrayList(Constants.PARSE_ALL_STEPS, (ArrayList<? extends Parcelable>) stepsList);
-        RecipeStepFragment recipeStepFragment = new RecipeStepFragment();
-        recipeStepFragment.setArguments(bundle);
-        fragmentManager = getSupportFragmentManager();
+        bundle.putString(Constants.PARSE_RECIPE_TITLE, recipeTitle);
 
         if (!dualPane) {
             //mobile
-            fragmentManager.beginTransaction()
+            Intent intent = new Intent(this, RecipeStepInfoActivity.class);
+            intent.putExtra(Constants.BUNDLE_STEP_EXTRA, bundle);
+            startActivity(intent);
+
+            /*fragmentManager.beginTransaction()
                     .replace(R.id.recipe_details_container, recipeStepFragment)
                     .addToBackStack(Constants.BACK_STACK_STEP_FRAGMENT)
-                    .commit();
+                    .commit();*/
         } else {
             //tablet
+            RecipeStepFragment recipeStepFragment = new RecipeStepFragment();
+            recipeStepFragment.setArguments(bundle);
+            fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .add(R.id.recipe_instructions_container, recipeStepFragment)
+                    .replace(R.id.recipe_instructions_container, recipeStepFragment)
                     .commit();
         }
     }

@@ -3,6 +3,7 @@
     package="com.appdevgenie.bakingtime">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -22,7 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RecipeDetailsActivity"/>
+        <activity android:name=".activities.RecipeDetailsActivity" />
+        <activity android:name=".activities.RecipeStepInfoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.RecipeDetailsActivity" />
+        </activity>
 
         <receiver android:name=".widget.BakingTimeWidgetProvider">
             <intent-filter>

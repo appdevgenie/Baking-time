@@ -14,6 +14,7 @@ public class Constants {
     public static final String SAVED_RECIPE_TITLE = "recipeTitle";
     public static final String PARSE_ALL_STEPS = "allStep";
     public static final String PARSE_STEP_ID = "selectedStepID";
+    public static final String PARSE_RECIPE_TITLE = "parseRecipeTitle";
     public static final String BACK_STACK_STEP_FRAGMENT = "backStackStepFragment";
     public static final String SELECT_DB = "selectDatabase";
     public static final String NETWORK_DB = "network";
@@ -22,4 +23,6 @@ public class Constants {
     public static final String SHARED_PREFS_INGREDIENTS = "sharedPrefsIngredients";
     public static final String SHARED_PREFS_NAME = "sharedPrefsName";
     public static final String IDLING_RESOURCE = "idlingResourceTestResource";
+    public static final String EXO_PLAYER_POSITION = "exoPlayerPosition";
+    public static final String BUNDLE_STEP_EXTRA = "bundleStepExtra";
 }

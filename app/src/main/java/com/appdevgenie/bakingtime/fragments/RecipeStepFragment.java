@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.appdevgenie.bakingtime.R;
 import com.appdevgenie.bakingtime.activities.RecipeDetailsActivity;
+import com.appdevgenie.bakingtime.activities.RecipeStepInfoActivity;
 import com.appdevgenie.bakingtime.constants.Constants;
 import com.appdevgenie.bakingtime.model.Step;
 import com.appdevgenie.bakingtime.utils.SnackbarUtil;
@@ -49,7 +50,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RecipeStepFragment extends Fragment implements View.OnClickListener, Player.EventListener {
+public class RecipeStepFragment extends Fragment implements View.OnClickListener,
+        Player.EventListener {
 
     private static final String TAG = RecipeStepFragment.class.getSimpleName();
 
@@ -71,6 +73,10 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
     private ArrayList<Step> stepsArrayList;
     private MediaSessionCompat mediaSession;
     private PlaybackStateCompat.Builder stateBuilder;
+    private String videoString;
+    private long playerPosition;
+    private long playerLastPosition;
+    private boolean playerPaused;
 
     public RecipeStepFragment() {
     }
@@ -91,6 +97,7 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         } else {
             stepsArrayList = savedInstanceState.getParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST);
             stepID = savedInstanceState.getInt(Constants.SAVED_SELECTED_STEP_ID);
+            playerLastPosition = savedInstanceState.getLong(Constants.EXO_PLAYER_POSITION);
         }
         setupVariables();
         populateStep();
@@ -122,20 +129,17 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
 
     private void populateStep() {
 
-        releasePlayer();
+        //releasePlayer();
         playerView = view.findViewById(R.id.playerView);
-        String videoString = stepsArrayList.get(stepID).getVideoURL();
-        String snackText;
+        videoString = stepsArrayList.get(stepID).getVideoURL();
+        //initializePlayer(videoString);
 
         if (!TextUtils.isEmpty(videoString)) {
             playerView.setVisibility(View.VISIBLE);
-            initializePlayer(Uri.parse(videoString));
-            snackText = getString(R.string.loading_video);
         }else{
             playerView.setVisibility(View.INVISIBLE);
-            snackText = getString(R.string.no_video_no_url);
+            SnackbarUtil.snackBarBuilder(getActivity().findViewById(android.R.id.content), getString(R.string.no_video_no_url)).show();
         }
-        SnackbarUtil.snackBarBuilder(getActivity().findViewById(android.R.id.content), snackText).show();
 
         tvDescription.setText(stepsArrayList.get(stepID).getDescription());
 
@@ -168,7 +172,7 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private void initializePlayer(Uri videoUri) {
+    private void initializePlayer() {
 
         if (exoPlayer == null) {
 
@@ -188,9 +192,35 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
                     userAgent, bandwidthMeter);
             MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
-                    .createMediaSource(videoUri);
+                    .createMediaSource(Uri.parse(videoString));
+
+            /*DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+            TrackSelection.Factory videoTrackSelectionFactory =
+                    new AdaptiveTrackSelection.Factory(bandwidthMeter);
+            DefaultTrackSelector trackSelector =
+                    new DefaultTrackSelector(videoTrackSelectionFactory);
+            LoadControl loadControl = new DefaultLoadControl();
+            exoPlayer = ExoPlayerFactory.newSimpleInstance(
+                    new DefaultRenderersFactory(playerView.getContext()),
+                    trackSelector, loadControl);
+            exoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
+            playerView.setPlayer(exoPlayer);
+            playerView.hideController();
+
+            exoPlayer.addListener(this);
+
+            String userAgent = Util.getUserAgent(context, getString(R.string.app_name));
+            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
+                    userAgent, bandwidthMeter);
+            MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
+                    .createMediaSource(Uri.parse(videoString));*/
 
             exoPlayer.prepare(videoSource);
+            if(playerLastPosition != 0 && !playerPaused) {
+                exoPlayer.seekTo(playerLastPosition);
+            }else{
+                exoPlayer.seekTo(playerPosition);
+            }
             exoPlayer.setPlayWhenReady(true);
         }
     }
@@ -204,8 +234,28 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23 || exoPlayer == null) {
+            initializePlayer();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if ((Util.SDK_INT <= 23 || exoPlayer == null)) {
+            initializePlayer();
+        }
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
+        if(exoPlayer != null){
+            playerPosition = exoPlayer.getContentPosition();
+            playerPaused = true;
+        }
         if (Util.SDK_INT <= 23) {
             releasePlayer();
         }
@@ -224,6 +274,7 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST, stepsArrayList);
         outState.putInt(Constants.SAVED_SELECTED_STEP_ID, stepID);
+        outState.putLong(Constants.EXO_PLAYER_POSITION, playerPosition);
     }
 
     public boolean isLandscape() {
@@ -231,8 +282,11 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
     }
 
     private void hideSystemUI() {
-        if(((RecipeDetailsActivity) getActivity()).getSupportActionBar() != null) {
-            ((RecipeDetailsActivity) getActivity()).getSupportActionBar().hide();
+        if(((RecipeStepInfoActivity) getActivity()).getSupportActionBar() != null) {
+            ((RecipeStepInfoActivity) getActivity()).getSupportActionBar().hide();
+        }
+        if(getActivity().findViewById(R.id.llStepSelection) != null){
+            getActivity().findViewById(R.id.llStepSelection).setVisibility(View.GONE);
         }
         View decorView = getActivity().getWindow().getDecorView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -321,6 +375,7 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
     public void onSeekProcessed() {
 
     }
+
 
     private class MySessionCallback extends MediaSessionCompat.Callback {
         @Override
