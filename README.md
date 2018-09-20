@@ -14,9 +14,9 @@ The Baking time application was one of my projects in the Android Developer Nano
 
 ## Screenshots (tablet)
 
-![device-2018-09-11-115203](https://user-images.githubusercontent.com/39134030/45352808-a795f500-b5b9-11e8-9624-e757a3dee144.png)
-![device-2018-09-11-150047](https://user-images.githubusercontent.com/39134030/45361907-bd181880-b5d3-11e8-9f88-12abb92c9931.png)
-![device-2018-09-11-150115](https://user-images.githubusercontent.com/39134030/45361908-bdb0af00-b5d3-11e8-96ae-4c94abc57e8e.png)
+![device-2018-09-20-120949](https://user-images.githubusercontent.com/39134030/45811868-8d04ff80-bcce-11e8-97b2-176ac603659b.png)
+![device-2018-09-20-121029](https://user-images.githubusercontent.com/39134030/45811869-8d9d9600-bcce-11e8-9627-d80ee3c4d0f1.png)
+![device-2018-09-20-121120](https://user-images.githubusercontent.com/39134030/45811871-8d9d9600-bcce-11e8-9952-6658b9cafbab.png)
 
 ## Libraries
 
