@@ -45,31 +45,4 @@
         </android.support.v7.widget.CardView>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llStepSelection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/step_text_description_margin"
-        android:visibility="gone"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/ibStepDetailPrevious"
-            style="@style/ImageButtonNextPrevious"
-            android:contentDescription="@string/image_button_previous"
-            app:srcCompat="@android:drawable/ic_media_previous" />
-
-        <TextView
-            android:id="@+id/tvStepDetailNumber"
-            style="@style/StepTextDescriptionLabel"
-            tools:text="Step 2" />
-
-        <ImageButton
-            android:id="@+id/ibStepDetailNext"
-            style="@style/ImageButtonNextPrevious"
-            android:contentDescription="@string/image_button_next"
-            app:srcCompat="@android:drawable/ic_media_next" />
-
-    </LinearLayout>
-
 </LinearLayout>

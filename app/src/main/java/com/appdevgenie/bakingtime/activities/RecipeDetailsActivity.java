@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.appdevgenie.bakingtime.R;
 import com.appdevgenie.bakingtime.adapters.RecipeStepsListAdapter;
@@ -50,8 +49,6 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeSt
 
     @BindView(R.id.detailsCoordinatorLayout)
     CoordinatorLayout coordinatorLayout;
-    /*@BindView(R.id.tvDetailsInfo)
-    TextView tvDetailsInfo;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -149,10 +146,6 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeSt
             intent.putExtra(Constants.BUNDLE_STEP_EXTRA, bundle);
             startActivity(intent);
 
-            /*fragmentManager.beginTransaction()
-                    .replace(R.id.recipe_details_container, recipeStepFragment)
-                    .addToBackStack(Constants.BACK_STACK_STEP_FRAGMENT)
-                    .commit();*/
         } else {
             //tablet
             RecipeStepFragment recipeStepFragment = new RecipeStepFragment();

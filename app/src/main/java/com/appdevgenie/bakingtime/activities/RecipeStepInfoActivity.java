@@ -1,6 +1,5 @@
 package com.appdevgenie.bakingtime.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -33,12 +32,10 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
     @BindView(R.id.ibStepDetailPrevious)
     ImageButton ibPreviousStep;
 
-    private Context context;
     private int stepID;
     private boolean dualPane;
     private ArrayList stepsArrayList;
     private String recipeTitle;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
 
         setupVariables();
 
-        toolbar = findViewById(R.id.stepToolbar);
+        Toolbar toolbar = findViewById(R.id.stepToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -64,8 +61,8 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
                 populateStep();
             }
         }else{
-            stepID = savedInstanceState.getInt(Constants.PARSE_STEP_ID);
-            stepsArrayList = savedInstanceState.getParcelableArrayList(Constants.PARSE_ALL_STEPS);
+            stepID = savedInstanceState.getInt(Constants.SAVED_SELECTED_STEP_ID);
+            stepsArrayList = savedInstanceState.getParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST);
             recipeTitle = savedInstanceState.getString(Constants.SAVED_RECIPE_TITLE, getString(R.string.step));
             setupStepInfo();
         }
@@ -73,8 +70,6 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
     }
 
     private void setupVariables() {
-
-        context = getApplicationContext();
 
         ibNextStep.setOnClickListener(this);
         ibPreviousStep.setOnClickListener(this);
@@ -105,7 +100,13 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
         bundle.putBoolean(Constants.PARSE_DUAL_PANE, dualPane);
         bundle.putParcelableArrayList(Constants.PARSE_ALL_STEPS, (ArrayList<? extends Parcelable>) stepsArrayList);
 
-        loadFragment(bundle);
+        RecipeStepFragment recipeStepFragment = new RecipeStepFragment();
+        recipeStepFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.recipe_step_container, recipeStepFragment)
+                .commit();
     }
 
     private void setupStepInfo() {
@@ -121,20 +122,8 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void loadFragment(Bundle bundle) {
-
-        RecipeStepFragment recipeStepFragment = new RecipeStepFragment();
-        recipeStepFragment.setArguments(bundle);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        fragmentManager.beginTransaction()
-                .replace(R.id.recipe_step_container, recipeStepFragment)
-                .commit();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.step_menu, menu);
         return true;
     }
@@ -154,8 +143,8 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(Constants.PARSE_STEP_ID, stepID);
-        outState.putParcelableArrayList(Constants.PARSE_ALL_STEPS, (ArrayList<? extends Parcelable>) stepsArrayList);
+        outState.putInt(Constants.SAVED_SELECTED_STEP_ID, stepID);
+        outState.putParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST, (ArrayList<? extends Parcelable>) stepsArrayList);
         outState.putString(Constants.SAVED_RECIPE_TITLE, getSupportActionBar().getTitle().toString());
     }
 }

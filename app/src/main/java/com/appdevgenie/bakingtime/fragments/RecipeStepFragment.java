@@ -10,17 +10,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appdevgenie.bakingtime.R;
-import com.appdevgenie.bakingtime.activities.RecipeDetailsActivity;
 import com.appdevgenie.bakingtime.activities.RecipeStepInfoActivity;
 import com.appdevgenie.bakingtime.constants.Constants;
 import com.appdevgenie.bakingtime.model.Step;
@@ -50,19 +46,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RecipeStepFragment extends Fragment implements View.OnClickListener,
-        Player.EventListener {
+public class RecipeStepFragment extends Fragment implements Player.EventListener {
 
     private static final String TAG = RecipeStepFragment.class.getSimpleName();
 
     @BindView(R.id.tvStepDetailLongDescription)
     TextView tvDescription;
-    @BindView(R.id.tvStepDetailNumber)
-    TextView tvStepNumber;
-    @BindView(R.id.ibStepDetailNext)
-    ImageButton ibNextStep;
-    @BindView(R.id.ibStepDetailPrevious)
-    ImageButton ibPreviousStep;
 
     private SimpleExoPlayer exoPlayer;
     private PlayerView playerView;
@@ -110,19 +99,12 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
 
         context = getContext();
 
-        CardView cvStepDescription = view.findViewById(R.id.cvStepDescription);
-        LinearLayout llStepSelection = view.findViewById(R.id.llStepSelection);
         if(dualPane){
-            llStepSelection.setVisibility(View.GONE);
-            cvStepDescription.setVisibility(View.VISIBLE);
+            view.findViewById(R.id.cvStepDescription).setVisibility(View.VISIBLE);
         }
         if(!dualPane && isLandscape()){
-            LinearLayout linearLayout = getActivity().findViewById(R.id.llDetailsInfo);
-            linearLayout.setVisibility(View.GONE);
             hideSystemUI();
         }
-        ibNextStep.setOnClickListener(this);
-        ibPreviousStep.setOnClickListener(this);
 
         initMediaSession();
     }
@@ -132,7 +114,6 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         //releasePlayer();
         playerView = view.findViewById(R.id.playerView);
         videoString = stepsArrayList.get(stepID).getVideoURL();
-        //initializePlayer(videoString);
 
         if (!TextUtils.isEmpty(videoString)) {
             playerView.setVisibility(View.VISIBLE);
@@ -142,34 +123,6 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         }
 
         tvDescription.setText(stepsArrayList.get(stepID).getDescription());
-
-        if (stepID == 0) {
-            ibPreviousStep.setVisibility(View.INVISIBLE);
-            tvStepNumber.setText(R.string.introduction);
-        } else if (stepID == stepsArrayList.size() - 1) {
-            ibNextStep.setVisibility(View.INVISIBLE);
-        } else {
-            ibPreviousStep.setVisibility(View.VISIBLE);
-            ibNextStep.setVisibility(View.VISIBLE);
-            tvStepNumber.setText(TextUtils.concat(getString(R.string.step), " ", String.valueOf(stepID)));
-        }
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.ibStepDetailPrevious:
-                stepID--;
-                populateStep();
-                break;
-
-            case R.id.ibStepDetailNext:
-                stepID++;
-                populateStep();
-                break;
-        }
     }
 
     private void initializePlayer() {
@@ -193,27 +146,6 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
                     userAgent, bandwidthMeter);
             MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
                     .createMediaSource(Uri.parse(videoString));
-
-            /*DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-            TrackSelection.Factory videoTrackSelectionFactory =
-                    new AdaptiveTrackSelection.Factory(bandwidthMeter);
-            DefaultTrackSelector trackSelector =
-                    new DefaultTrackSelector(videoTrackSelectionFactory);
-            LoadControl loadControl = new DefaultLoadControl();
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(
-                    new DefaultRenderersFactory(playerView.getContext()),
-                    trackSelector, loadControl);
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
-            playerView.setPlayer(exoPlayer);
-            playerView.hideController();
-
-            exoPlayer.addListener(this);
-
-            String userAgent = Util.getUserAgent(context, getString(R.string.app_name));
-            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
-                    userAgent, bandwidthMeter);
-            MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
-                    .createMediaSource(Uri.parse(videoString));*/
 
             exoPlayer.prepare(videoSource);
             if(playerLastPosition != 0 && !playerPaused) {
@@ -288,6 +220,10 @@ public class RecipeStepFragment extends Fragment implements View.OnClickListener
         if(getActivity().findViewById(R.id.llStepSelection) != null){
             getActivity().findViewById(R.id.llStepSelection).setVisibility(View.GONE);
         }
+        if(getActivity().findViewById(R.id.llDetailsInfo) != null){
+            getActivity().findViewById(R.id.llDetailsInfo).setVisibility(View.GONE);
+        }
+
         View decorView = getActivity().getWindow().getDecorView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             decorView.setSystemUiVisibility(

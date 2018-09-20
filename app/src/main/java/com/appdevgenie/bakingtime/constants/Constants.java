@@ -22,6 +22,7 @@ public class Constants {
     public static final String SHARED_PREFS = "sharedPrefs_com.appdevgenie.bakingtime";
     public static final String SHARED_PREFS_INGREDIENTS = "sharedPrefsIngredients";
     public static final String SHARED_PREFS_NAME = "sharedPrefsName";
+    public static final String SHARED_PREFS_RECIPE_ID = "sharedPrefsRecipeId";
     public static final String IDLING_RESOURCE = "idlingResourceTestResource";
     public static final String EXO_PLAYER_POSITION = "exoPlayerPosition";
     public static final String BUNDLE_STEP_EXTRA = "bundleStepExtra";

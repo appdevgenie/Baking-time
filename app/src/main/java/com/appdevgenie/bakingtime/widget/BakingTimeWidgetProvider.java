@@ -6,16 +6,12 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.widget.RemoteViews;
 
 import com.appdevgenie.bakingtime.R;
 import com.appdevgenie.bakingtime.activities.MainListActivity;
 import com.appdevgenie.bakingtime.constants.Constants;
-import com.appdevgenie.bakingtime.database.ListConverter;
-import com.appdevgenie.bakingtime.model.Ingredient;
-import com.appdevgenie.bakingtime.utils.IngredientListStringBuilder;
-
-import java.util.List;
 
 
 public class BakingTimeWidgetProvider extends AppWidgetProvider {
@@ -29,23 +25,22 @@ public class BakingTimeWidgetProvider extends AppWidgetProvider {
 
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        Intent intent = new Intent(context, MainListActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         SharedPreferences prefs = context.getSharedPreferences(Constants.SHARED_PREFS, 0);
-        String ingredientsString = prefs.getString(Constants.SHARED_PREFS_INGREDIENTS, null);
         String recipeName = prefs.getString(Constants.SHARED_PREFS_NAME, context.getString(R.string.recipe));
-        List<Ingredient> ingredientList = ListConverter.stringToIngredientList(ingredientsString);
 
-        StringBuilder stringBuilder = IngredientListStringBuilder.formatListToString(ingredientList, context);
+        Intent serviceIntent = new Intent(context, WidgetRemoteViewsService.class);
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_time_widget_provider);
-        views.setTextViewText(R.id.tvWidgetRecipeName, recipeName);
-        views.setTextViewText(R.id.tvWidgetIngredients, stringBuilder);
-        views.setOnClickPendingIntent(R.id.rlWidgetLayout, pendingIntent);
+        Intent intentOpen = new Intent(context, MainListActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intentOpen, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // Instruct the widget manager to update the widget
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_list_view);
+        views.setTextViewText(R.id.tvWidgetRecipeTitle, recipeName);
+        views.setRemoteAdapter(R.id.widgetListView, serviceIntent);
+        views.setEmptyView(R.id.widgetListView, R.id.widgetEmptyView);
+        views.setPendingIntentTemplate(R.id.widgetListView, pendingIntent);
+
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }
