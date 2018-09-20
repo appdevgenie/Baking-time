@@ -4,19 +4,19 @@ The Baking time application was one of my projects in the Android Developer Nano
 
 ## Screenshots (mobile)
 
-![device-2018-09-11-095153](https://user-images.githubusercontent.com/39134030/45346288-1b7bd180-b5a9-11e8-83ec-1f24d1f99870.png)
-![device-2018-09-11-095215](https://user-images.githubusercontent.com/39134030/45346289-1c146800-b5a9-11e8-89d2-cb2e5988c5f8.png)
-![device-2018-09-11-095234](https://user-images.githubusercontent.com/39134030/45346291-1c146800-b5a9-11e8-8df4-06f482975696.png)
-![device-2018-09-11-095303](https://user-images.githubusercontent.com/39134030/45346292-1cacfe80-b5a9-11e8-9a36-bf8e6210b724.png)
-![device-2018-09-11-122737](https://user-images.githubusercontent.com/39134030/45357281-1ed18600-b5c6-11e8-956d-d56113658d7f.png)
-![device-2018-09-11-100017](https://user-images.githubusercontent.com/39134030/45346485-9ba23700-b5a9-11e8-8e81-373ed589186d.png)
-![device-2018-09-11-095415](https://user-images.githubusercontent.com/39134030/45346294-1d459500-b5a9-11e8-84bf-d57eafc04148.png)
+![device-2018-09-14-150940](https://user-images.githubusercontent.com/39134030/45552480-5e4fda80-b831-11e8-81ae-f21f9df53bf0.png)
+![device-2018-09-14-151047](https://user-images.githubusercontent.com/39134030/45552482-5e4fda80-b831-11e8-9a21-88bdf26695dc.png)
+![device-2018-09-14-151130](https://user-images.githubusercontent.com/39134030/45552483-5e4fda80-b831-11e8-8158-5e61e177b2c5.png)
+![device-2018-09-14-151228](https://user-images.githubusercontent.com/39134030/45552484-5ee87100-b831-11e8-8631-b8404666fbce.png)
+![device-2018-09-14-151326](https://user-images.githubusercontent.com/39134030/45552485-5ee87100-b831-11e8-8ca3-a779b23d103d.png)
+![device-2018-09-14-151436](https://user-images.githubusercontent.com/39134030/45552486-5f810780-b831-11e8-9b47-674c75289b92.png)
+![device-2018-09-17-125509](https://user-images.githubusercontent.com/39134030/45809461-85425c80-bcc8-11e8-8763-6b75bf3a2df5.png)
 
 ## Screenshots (tablet)
 
-![device-2018-09-11-115203](https://user-images.githubusercontent.com/39134030/45352808-a795f500-b5b9-11e8-9624-e757a3dee144.png)
-![device-2018-09-11-150047](https://user-images.githubusercontent.com/39134030/45361907-bd181880-b5d3-11e8-9f88-12abb92c9931.png)
-![device-2018-09-11-150115](https://user-images.githubusercontent.com/39134030/45361908-bdb0af00-b5d3-11e8-96ae-4c94abc57e8e.png)
+![device-2018-09-20-120949](https://user-images.githubusercontent.com/39134030/45811868-8d04ff80-bcce-11e8-97b2-176ac603659b.png)
+![device-2018-09-20-121029](https://user-images.githubusercontent.com/39134030/45811869-8d9d9600-bcce-11e8-9627-d80ee3c4d0f1.png)
+![device-2018-09-20-121120](https://user-images.githubusercontent.com/39134030/45811871-8d9d9600-bcce-11e8-9952-6658b9cafbab.png)
 
 ## Libraries
 
