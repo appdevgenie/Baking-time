@@ -4,9 +4,7 @@
     android:id="@+id/flWidgetListLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:clickable="true"
-    android:focusable="true">
+    android:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/llWidgetListLayout"
@@ -21,7 +19,7 @@
             android:background="@color/colorPrimary"
             android:padding="10dp"
             android:textColor="@color/colorWhite"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:text="@string/recipe" />
 
@@ -31,7 +29,8 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:divider="@null"
-            android:gravity="center" />
+            android:gravity="center"
+            android:listSelector="@android:color/transparent" />
 
     </LinearLayout>
 
@@ -55,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.1"
-            android:src="@drawable/widget_cupcake" />
+            android:src="@drawable/widget_cupcake"
+            android:contentDescription="@string/widget_image_view" />
 
     </RelativeLayout>
 

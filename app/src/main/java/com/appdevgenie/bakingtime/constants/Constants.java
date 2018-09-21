@@ -26,4 +26,5 @@ public class Constants {
     public static final String IDLING_RESOURCE = "idlingResourceTestResource";
     public static final String EXO_PLAYER_POSITION = "exoPlayerPosition";
     public static final String BUNDLE_STEP_EXTRA = "bundleStepExtra";
+    public static final String PARSE_BUNDLE_WIDGET = "parseBundleWidget";
 }

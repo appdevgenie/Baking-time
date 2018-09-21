@@ -2,23 +2,24 @@ package com.appdevgenie.bakingtime.widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.appdevgenie.bakingtime.R;
-import com.appdevgenie.bakingtime.constants.Constants;
 import com.appdevgenie.bakingtime.database.ListConverter;
 import com.appdevgenie.bakingtime.model.Ingredient;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
+import static com.appdevgenie.bakingtime.widget.BakingTimeWidgetProvider.ACTION_CLICK;
+import static com.appdevgenie.bakingtime.widget.BakingTimeWidgetProvider.EXTRA_STRING;
+
 public class WidgetRemoteViewsService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new WidgetListRemoteViewsFactory(getApplicationContext());
+        return new WidgetListRemoteViewsFactory(getApplicationContext(), intent);
     }
 
     class WidgetListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
@@ -27,8 +28,9 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
         private String ingredientsString;
         private List<Ingredient> ingredientList;
 
-        WidgetListRemoteViewsFactory(Context context) {
+        WidgetListRemoteViewsFactory(Context context, Intent intent) {
             this.context = context;
+            ingredientsString = intent.getStringExtra(EXTRA_STRING);
         }
 
         @Override
@@ -39,9 +41,8 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
         @Override
         public void onDataSetChanged() {
 
-            SharedPreferences prefs = context.getSharedPreferences(Constants.SHARED_PREFS, 0);
-            ingredientsString = prefs.getString(Constants.SHARED_PREFS_INGREDIENTS, null);
             ingredientList = ListConverter.stringToIngredientList(ingredientsString);
+
         }
 
         @Override
@@ -77,6 +78,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
             views.setTextViewText(R.id.tvWidgetIngredientItem, stringBuilder);
 
             Intent intent = new Intent();
+            intent.setAction(ACTION_CLICK);
             views.setOnClickFillInIntent(R.id.tvWidgetIngredientItem, intent);
 
             return views;
