@@ -40,9 +40,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
         @Override
         public void onDataSetChanged() {
-
             ingredientList = ListConverter.stringToIngredientList(ingredientsString);
-
         }
 
         @Override

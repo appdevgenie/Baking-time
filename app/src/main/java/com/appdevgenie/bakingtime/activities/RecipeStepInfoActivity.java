@@ -64,6 +64,7 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
             stepID = savedInstanceState.getInt(Constants.SAVED_SELECTED_STEP_ID);
             stepsArrayList = savedInstanceState.getParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST);
             recipeTitle = savedInstanceState.getString(Constants.SAVED_RECIPE_TITLE, getString(R.string.step));
+            dualPane = savedInstanceState.getBoolean(Constants.SAVED_DUAL_PANE);
             setupStepInfo();
         }
         getSupportActionBar().setTitle(recipeTitle);
@@ -115,6 +116,7 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
             tvStepNumber.setText(R.string.introduction);
         } else if (stepID == stepsArrayList.size() - 1) {
             ibNextStep.setVisibility(View.INVISIBLE);
+            tvStepNumber.setText(TextUtils.concat(getString(R.string.step), " ", String.valueOf(stepID)));
         } else {
             ibPreviousStep.setVisibility(View.VISIBLE);
             ibNextStep.setVisibility(View.VISIBLE);
@@ -146,5 +148,6 @@ public class RecipeStepInfoActivity extends AppCompatActivity implements View.On
         outState.putInt(Constants.SAVED_SELECTED_STEP_ID, stepID);
         outState.putParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST, (ArrayList<? extends Parcelable>) stepsArrayList);
         outState.putString(Constants.SAVED_RECIPE_TITLE, getSupportActionBar().getTitle().toString());
+        outState.putBoolean(Constants.SAVED_DUAL_PANE, dualPane);
     }
 }

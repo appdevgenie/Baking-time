@@ -9,6 +9,7 @@ public class Constants {
     public static final String SAVED_SELECTED_RECIPE = "savedRecipe";
     public static final String SAVED_IS_FAVOURITE = "isFavourite";
     public static final String PARSE_DUAL_PANE = "isDualPane";
+    public static final String SAVED_DUAL_PANE = "isDualPaneSaved";
     public static final String SAVED_SELECTED_STEP_ID = "selectedStepID";
     public static final String SAVED_SELECTED_STEP_LIST = "selectedStepList";
     public static final String SAVED_RECIPE_TITLE = "recipeTitle";
@@ -27,4 +28,5 @@ public class Constants {
     public static final String EXO_PLAYER_POSITION = "exoPlayerPosition";
     public static final String BUNDLE_STEP_EXTRA = "bundleStepExtra";
     public static final String PARSE_BUNDLE_WIDGET = "parseBundleWidget";
+    public static final String SAVED_PLAY_WHEN_READY = "playWhenReady";
 }

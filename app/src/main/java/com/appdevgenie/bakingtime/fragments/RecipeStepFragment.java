@@ -66,6 +66,7 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
     private long playerPosition;
     private long playerLastPosition;
     private boolean playerPaused;
+    private boolean isPlayWhenReady;
 
     public RecipeStepFragment() {
     }
@@ -87,6 +88,8 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
             stepsArrayList = savedInstanceState.getParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST);
             stepID = savedInstanceState.getInt(Constants.SAVED_SELECTED_STEP_ID);
             playerLastPosition = savedInstanceState.getLong(Constants.EXO_PLAYER_POSITION);
+            isPlayWhenReady = savedInstanceState.getBoolean(Constants.SAVED_PLAY_WHEN_READY);
+            dualPane = savedInstanceState.getBoolean(Constants.SAVED_DUAL_PANE);
         }
         setupVariables();
         populateStep();
@@ -153,7 +156,7 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
             }else{
                 exoPlayer.seekTo(playerPosition);
             }
-            exoPlayer.setPlayWhenReady(true);
+            exoPlayer.setPlayWhenReady(isPlayWhenReady);
         }
     }
 
@@ -179,6 +182,7 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
         if ((Util.SDK_INT <= 23 || exoPlayer == null)) {
             initializePlayer();
         }
+        mediaSession.setActive(true);
     }
 
     @Override
@@ -187,6 +191,7 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
         if(exoPlayer != null){
             playerPosition = exoPlayer.getContentPosition();
             playerPaused = true;
+            isPlayWhenReady = exoPlayer.getPlayWhenReady();
         }
         if (Util.SDK_INT <= 23) {
             releasePlayer();
@@ -199,6 +204,7 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
         if (Util.SDK_INT > 23) {
             releasePlayer();
         }
+        mediaSession.setActive(false);
     }
 
     @Override
@@ -207,6 +213,8 @@ public class RecipeStepFragment extends Fragment implements Player.EventListener
         outState.putParcelableArrayList(Constants.SAVED_SELECTED_STEP_LIST, stepsArrayList);
         outState.putInt(Constants.SAVED_SELECTED_STEP_ID, stepID);
         outState.putLong(Constants.EXO_PLAYER_POSITION, playerPosition);
+        outState.putBoolean(Constants.SAVED_PLAY_WHEN_READY, isPlayWhenReady);
+        outState.putBoolean(Constants.SAVED_DUAL_PANE, dualPane);
     }
 
     public boolean isLandscape() {

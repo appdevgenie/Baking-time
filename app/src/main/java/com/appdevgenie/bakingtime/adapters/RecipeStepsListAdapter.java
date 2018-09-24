@@ -20,12 +20,13 @@ public class RecipeStepsListAdapter extends RecyclerView.Adapter<RecipeStepsList
     private Context context;
     private List<Step> steps;
     private StepClickedListener stepClickedListener;
-    private int rowId = -1;
+    private int rowId;
 
-    public RecipeStepsListAdapter(Context context, List<Step> steps, StepClickedListener stepClickedListener) {
+    public RecipeStepsListAdapter(Context context, List<Step> steps, StepClickedListener stepClickedListener, int rowId) {
         this.context = context;
         this.steps = steps;
         this.stepClickedListener = stepClickedListener;
+        this.rowId = rowId;
     }
 
     @NonNull

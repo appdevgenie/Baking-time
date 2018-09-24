@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="1dp"
+            android:layout_weight="3"
+            tools:ignore="NestedWeights"
+            app:controller_layout_id="@layout/exo_playback_control_view"
+            app:layout_constraintDimensionRatio="16:9"/>
+
+        <android.support.v7.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/cvStepDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/card_view_corner_radius"
+            app:cardElevation="@dimen/card_view_elevation"
+            app:cardUseCompatPadding="true">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/step_text_description_margin">
+
+                <TextView
+                    android:id="@+id/tvStepDetailLongDescription"
+                    style="@style/StepTextDescription"
+                    tools:text="This is a long description of the recipe step......" />
+
+            </ScrollView>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>
